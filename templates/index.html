@@ -27,7 +27,7 @@
         {% if session['msg'] == True%}
         <h3>List of inputs:</h3>
         {% for log in email_logs %}
-        <p>{{ log['email_log'] }}</p>
+        <p>{{ log['email_log'] }}~~~~~~~~~~~~{{ log['created_at'] }}</p>
         {% endfor %}
         {% endif %}
     </body>
