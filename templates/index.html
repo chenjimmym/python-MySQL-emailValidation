@@ -10,7 +10,9 @@
         {% endfor %}
         {% if session['msg'] == True%}
         <h2>You got it</h2>
+        {% if index > 0%}
         <h3>Email is: {{ email_logs[index]['email_log'] }}</h3>
+        {% endif %}
         {% else %}
         <h2>No Match</h2>
         {% endif %}

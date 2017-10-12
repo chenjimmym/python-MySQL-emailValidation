@@ -15,7 +15,10 @@ def mainpage():
     # print emails
     query2 = "SELECT * FROM email_logs"
     email_logs = mysql.query_db(query2)
-    index = len(email_logs) - 1
+    if email_logs:
+        index = len(email_logs) - 1
+    else:
+        index = 0
     return render_template('index.html', emails = emails, email_logs = email_logs, index = index)
 
 @app.route('/check', methods=['POST'])
@@ -34,6 +37,13 @@ def check():
     else:
         print "No Match"
     # print forCheck
+    return redirect('/')
+
+@app.route('/reset', methods=['POST'])
+def deleteLogs():
+    query = "DELETE FROM `email_validation`.`email_logs`"
+    mysql.query_db(query)
+    session['msg'] = False
     return redirect('/')
 
 app.run(debug=True)
