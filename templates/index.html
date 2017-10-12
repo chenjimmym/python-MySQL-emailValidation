@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Email Validation</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        {% for email in emails %}
+        <p>{{ email['email'] }}</p>
+        {% endfor %}
+        {% if session['msg'] == True%}
+        <h2>You got it</h2>
+        <h3>Email is: {{ email_logs[index]['email_log'] }}</h3>
+        {% else %}
+        <h2>No Match</h2>
+        {% endif %}
+        <form action="/check" method="post">
+            Email:
+            <input type="text" name="email">
+            <input type="submit" value="Check">
+        </form>
+        <form action="/reset" method="post">
+            <input type="submit" value="Reset Log">
+        </form>
+        {% if session['msg'] == True%}
+        <h3>List of inputs:</h3>
+        {% for log in email_logs %}
+        <p>{{ log['email_log'] }}</p>
+        {% endfor %}
+        {% endif %}
+    </body>
+</html>
